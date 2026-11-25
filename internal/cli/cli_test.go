@@ -65,4 +65,18 @@ func TestRun(t *testing.T) {
 			t.Errorf("Run(nil) = %q; want %q", got, want)
 		}
 	})
+
+	t.Run("return about", func(t *testing.T) {
+		got, err := cli.Run([]string{"about"})
+
+		if err != nil {
+			t.Fatalf("Run([]string{\"about\"}) returned unexpected error: %v", err)
+		}
+
+		want := "Forge: plataforma para publicar e administrar sites estaticos."
+
+		if got != want {
+			t.Errorf("Run([]string{\"about\"}) = %q; want %q", got, want)
+		}
+	})
 }
