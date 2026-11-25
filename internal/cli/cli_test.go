@@ -28,7 +28,7 @@ func TestRun(t *testing.T) {
 			t.Fatalf("Run(help) returned unexpected error: %v", err)
 		}
 
-		want := "Commandos disponiveis: version, help"
+		want := "Commandos disponiveis: version, help, about"
 
 		if got != want {
 			t.Errorf("Run(help) = %q; want %q", got, want)
@@ -59,10 +59,24 @@ func TestRun(t *testing.T) {
 			t.Fatalf("Run(nil) returned unexpected error: %v", err)
 		}
 
-		want := "Forge version: 0.0.1\nCommandos disponiveis: version, help"
+		want := "Forge version: 0.0.1\nCommandos disponiveis: version, help, about"
 
 		if got != want {
 			t.Errorf("Run(nil) = %q; want %q", got, want)
+		}
+	})
+
+	t.Run("return about", func(t *testing.T) {
+		got, err := cli.Run([]string{"about"})
+
+		if err != nil {
+			t.Fatalf("Run([]string{\"about\"}) returned unexpected error: %v", err)
+		}
+
+		want := "Forge: plataforma para publicar e administrar sites estaticos."
+
+		if got != want {
+			t.Errorf("Run([]string{\"about\"}) = %q; want %q", got, want)
 		}
 	})
 }

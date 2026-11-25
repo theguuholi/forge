@@ -15,6 +15,8 @@ func Run(args []string) (string, error) {
 		return formatVersion(), nil
 	case "help":
 		return helperText(), nil
+	case "about":
+		return about(), nil
 	default:
 		return "", fmt.Errorf("unknown command: %q", args[0])
 	}
@@ -22,4 +24,8 @@ func Run(args []string) (string, error) {
 
 func formatVersion() string {
 	return "Forge version: " + Version
+}
+
+func about() string {
+	return "Forge: plataforma para publicar e administrar sites estaticos."
 }
