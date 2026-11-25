@@ -1,10 +1,23 @@
 package cli
 
+import "fmt"
+
 const Version = "0.0.1"
 
-func Run() string {
-	text := formatVersion() + "\n" + helperText()
-	return text
+func Run(args []string) (string, error) {
+	if len(args) == 0 {
+		text := formatVersion() + "\n" + helperText()
+		return text, nil
+	}
+
+	switch args[0] {
+	case "version":
+		return formatVersion(), nil
+	case "help":
+		return helperText(), nil
+	default:
+		return "", fmt.Errorf("unknown command: %q", args[0])
+	}
 }
 
 func formatVersion() string {
