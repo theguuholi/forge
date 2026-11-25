@@ -1,5 +1,7 @@
 package cli
 
+import "fmt"
+
 const Version = "0.0.1"
 
 func Run(args []string) (string, error) {
@@ -14,7 +16,7 @@ func Run(args []string) (string, error) {
 	case "help":
 		return helperText(), nil
 	default:
-		return "Unknown command", nil
+		return "", fmt.Errorf("unknown command: %q", args[0])
 	}
 }
 

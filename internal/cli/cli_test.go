@@ -38,14 +38,17 @@ func TestRun(t *testing.T) {
 	t.Run("unknown command returns error", func(t *testing.T) {
 		got, err := cli.Run([]string{"unknown"})
 
-		if err != nil {
-			t.Fatalf("Run(unknown) returned unexpected error: %v", err)
+		if err == nil {
+			t.Fatal("expected an error for an unknown command")
 		}
 
-		want := "Unknown command"
+		if got != "" {
+			t.Errorf("Run(unknown) output = %q; want empty", got)
+		}
 
-		if got != want {
-			t.Errorf("Run(unknown) = %q; want %q", got, want)
+		want := `unknown command: "unknown"`
+		if err.Error() != want {
+			t.Errorf("Run(unknown) error = %q; want %q", err.Error(), want)
 		}
 	})
 
