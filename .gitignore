@@ -1,0 +1,9 @@
+# Executável gerado na raiz
+/forge
+
+# Relatórios de cobertura
+/coverage.out
+/coverage.html
+
+# Arquivos locais do macOS
+.DS_Store
